@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BERTIN ABIJURU · Educator & Developer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-gold: #d4a574;
+            --deep-navy: #0a0e1a;
+            --glass-bg: rgba(18, 25, 40, 0.65);
+            --glass-border: rgba(212, 165, 116, 0.2);
+            --text-primary: #f5f0e8;
+            --text-secondary: #b8b0a0;
+            --accent-blue: #6b8cae;
+            --accent-purple: #9b8ec7;
+            --gradient-1: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%);
+            --gradient-2: linear-gradient(45deg, rgba(212, 165, 116, 0.1), rgba(107, 140, 174, 0.1));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--deep-navy);
+            font-family: 'Inter', system-ui, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Cinematic Background System */
+        .universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            overflow: hidden;
+        }
+
+        /* Animated Gradient Mesh */
+        .gradient-mesh {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 165, 116, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(107, 140, 174, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(155, 142, 199, 0.1) 0%, transparent 40%);
+            animation: meshMove 20s ease-in-out infinite alternate;
+            filter: blur(60px);
+        }
+
+        @keyframes meshMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(5%, 5%) rotate(5deg); }
+        }
+
+        /* Floating Orbs with Organic Movement */
+        .orb-system {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: floatOrb var(--duration) ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.4) 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+            --duration: 25s;
+            --delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(107, 140, 174, 0.4) 0%, transparent 70%);
+            bottom: -5%;
+            right: -5%;
+            --duration: 30s;
+            --delay: -5s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(155, 142, 199, 0.3) 0%, transparent 70%);
+            top: 40%;
+            left: 30%;
+            --duration: 35s;
+            --delay: -10s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -30px) scale(1.1); }
+            50% { transform: translate(-30px, 50px) scale(0.95); }
+            75% { transform: translate(30px, 30px) scale(1.05); }
+        }
+
+        /* Particle Network */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(212, 165, 116, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite linear;
+            box-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Noise Texture Overlay */
+        .noise {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        /* Glass Card with 3D Tilt */
+        .portfolio-card {
+            width: 100%;
+            max-width: 1200px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 2rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                0 0 100px rgba(212, 165, 116, 0.1);
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            overflow: hidden;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+            pointer-events: none;
+            border-radius: 2rem;
+        }
+
+        /* Left Panel - Profile Section */
+        .left-panel {
+            background: linear-gradient(180deg, rgba(15, 20, 30, 0.8) 0%, rgba(10, 14, 22, 0.9) 100%);
+            padding: 3rem 2rem;
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .profile-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 2rem;
+        }
+
+        .name-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #f5f0e8 0%, #d4a574 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .name::after {
+            content: 'BERTIN ABIJURU';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .flag-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 165, 116, 0.15);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            font-size: 0.9rem;
+            color: var(--primary-gold);
+            margin-top: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .rwanda-flag {
+            width: 24px;
+            height: 16px;
+            background: linear-gradient(to bottom, #00a1de 33%, #fad201 33%, #fad201 66%, #20603d 66%);
+            border-radius: 3px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Profile Image with Glow */
+        .profile-image-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 2rem auto;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e2a3a 0%, #0f1419 100%);
+            border: 3px solid rgba(212, 165, 116, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 60px rgba(212, 165, 116, 0.3),
+                inset 0 0 60px rgba(0,0,0,0.5);
+        }
+
+        .profile-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--primary-gold);
+            border-right-color: var(--accent-blue);
+            animation: rotateRing 10s linear infinite;
+        }
+
+        @keyframes rotateRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Contact Cards */
+        .contact-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 165, 116, 0.15);
+            border-radius: 1rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
+        }
+
+        .contact-card:hover {
+            transform: translateX(5px);
+            border-color: var(--primary-gold);
+            background: rgba(212, 165, 116, 0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .contact-info h4 {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-info p {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Right Panel - Content */
+        .right-panel {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Animated Tags */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: rgba(212, 165, 116, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            color: var(--primary-gold);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .tag::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(212, 165, 116, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .tag:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 165, 116, 0.2);
+        }
+
+        .tag.primary {
+            background: rgba(212, 165, 116, 0.2);
+            border-color: var(--primary-gold);
+        }
+
+        /* Main Statement */
+        .hero-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #f5f0e8 0%, #b8b0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero-text::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gold), transparent);
+            border-radius: 2px;
+        }
+
+        /* Role Cards with Hover Effects */
+        .roles-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .role-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .role-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .role-card:hover::before {
+            opacity: 1;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 165, 116, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .role-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .role-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .role-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Quote Block */
+        .quote-block {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--primary-gold);
+            padding: 1.5rem 2rem;
+            border-radius: 0 1rem 1rem 0;
+            margin: 2rem 0;
+            position: relative;
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .quote-block::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 4rem;
+            color: var(--primary-gold);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        /* Skills Galaxy */
+        .skills-section {
+            margin: 2rem 0;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skills-orbit {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-node {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-node:hover {
+            background: rgba(212, 165, 116, 0.15);
+            border-color: var(--primary-gold);
+            color: var(--text-primary);
+            transform: scale(1.05);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .project-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-gold);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover::after {
+            transform: scaleY(1);
+        }
+
+        .project-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(5px);
+        }
+
+        .project-icon {
+            font-size: 1.5rem;
+        }
+
+        .project-info h4 {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .project-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Action Button */
+        .cta-container {
+            margin-top: auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, #b8956a 100%);
+            color: #0a0e1a;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 3rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(212, 165, 116, 0.4);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-gold);
+            border-color: var(--primary-gold);
+            transform: translateY(-3px) rotate(360deg);
+            color: #0a0e1a;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .portfolio-card {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+            
+            .left-panel {
+                border-right: none;
+                border-bottom: 1px solid var(--glass-border);
+            }
+            
+            .roles-container,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gold);
+            border-radius: 4px;
+        }
+
+        /* Floating Badge */
+        .floating-badge {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(18, 25, 40, 0.9);
+            border: 1px solid var(--glass-border);
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            z-index: 100;
+            animation: floatBadge 3s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="universe">
+        <div class="gradient-mesh"></div>
+        <div class="orb-system">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+        <div class="particles" id="particles"></div>
+        <div class="noise"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="portfolio-card" id="card">
+            
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <div class="profile-header fade-in">
+                    <div class="name-container">
+                        <h1 class="name">BERTIN<br>ABIJURU</h1>
+                    </div>
+                    <div class="flag-badge">
+                        <div class="rwanda-flag"></div>
+                        <span>Language Educator</span>
+                    </div>
+                </div>
+
+                <div class="profile-image-container fade-in delay-1">
+                    <div class="profile-ring"></div>
+                    <div class="profile-image">👨‍🏫</div>
+                </div>
+
+                <div class="contact-stack fade-in delay-2">
+                    <div class="contact-card" onclick="copyToClipboard('0792743880')">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-info">
+                            <h4>Phone / WhatsApp</h4>
+                            <p>0792743880</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card" onclick="copyToClipboard('bertinabijuru@gmail.com')">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-info">
+                            <h4>Email</h4>
+                            <p>bertinabijuru@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-info">
+                            <h4>Location</h4>
+                            <p>Nyanza, Ntyazo Sector</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">🎓</div>
+                        <div class="contact-info">
+                            <h4>Institution</h4>
+                            <p>TTC MUHANGA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <div class="tag-cloud fade-in">
+                    <span class="tag primary">🍎 Student Teacher</span>
+                    <span class="tag">💻 Developer</span>
+                    <span class="tag">🌍 Rwanda 2026</span>
+                    <span class="tag">📚 Language Ed</span>
+                </div>
+
+                <h2 class="hero-text fade-in delay-1">
+                    Crafting the Future of Education Through Technology & Heart
+                </h2>
+
+                <div class="roles-container fade-in delay-2">
+                    <div class="role-card">
+                        <div class="role-icon">📘</div>
+                        <h3>Educator</h3>
+                        <p>Pursuing a Diploma in Language Education with a focus on Kinyarwanda and English. I create learner-centered environments where every student thrives through warmth and innovation.</p>
+                    </div>
+
+                    <div class="role-card">
+                        <div class="role-icon">⚡</div>
+                        <h3>Developer</h3>
+                        <p>Building educational tools and digital experiences with modern web technologies. I merge pedagogical expertise with technical fluency to create impactful learning solutions.</p>
+                    </div>
+                </div>
+
+                <div class="quote-block fade-in delay-3">
+                    Every student can flourish with the right blend of warmth, clarity, and innovation. My mission is to bridge traditional teaching excellence with the digital future of education.
+                </div>
+
+                <div class="skills-section fade-in delay-3">
+                    <div class="section-title">⚡ Expertise & Skills</div>
+                    <div class="skills-orbit">
+                        <span class="skill-node">Lesson Planning</span>
+                        <span class="skill-node">EdTech Integration</span>
+                        <span class="skill-node">Kinyarwanda</span>
+                        <span class="skill-node">English</span>
+                        <span class="skill-node">Classroom Management</span>
+                        <span class="skill-node">HTML/CSS/JS</span>
+                        <span class="skill-node">Public Speaking</span>
+                        <span class="skill-node">Creative Writing</span>
+                        <span class="skill-node">Digital Literacy</span>
+                    </div>
+                </div>
+
+                <div class="fade-in delay-4">
+                    <div class="section-title">🚀 Current Projects</div>
+                    <div class="projects-grid">
+                        <div class="project-item">
+                            <div class="project-icon">📄</div>
+                            <div class="project-info">
+                                <h4>Language Portfolio Builder</h4>
+                                <p>Digital tool for student assessments</p>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-icon">🧰</div>
+                            <div class="project-info">
+                                <h4>Teacher Toolkit</h4>
+                                <p>Resource management platform</p>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-icon">🌍</div>
+                            <div class="project-info">
+                                <h4>Youth Literacy Initiative</h4>
+                                <p>Nyanza community program</p>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-icon">✍️</div>
+                            <div class="project-info">
+                                <h4>Creative Writing</h4>
+                                <p>Poetry & prose collection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-container fade-in delay-4">
+                    <div class="social-links">
+                        <div class="social-icon" title="LinkedIn">💼</div>
+                        <div class="social-icon" title="GitHub">💻</div>
+                        <div class="social-icon" title="Twitter">🐦</div>
+                        <div class="social-icon" title="Email">📧</div>
+                    </div>
+                    <button class="cta-button" onclick="showContact()">
+                        Let's Connect 🚀
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-badge">
+        🎓 TTC MUHANGA · Class of 2026
+    </div>
+
+    <script>
+        // Generate floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // 3D Tilt Effect
+        const card = document.getElementById('card');
+        const container = document.querySelector('.container');
+
+        container.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 50;
+            const rotateY = (centerX - x) / 50;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        });
+
+        // Copy to clipboard functionality
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification(`Copied: ${text}`);
+            });
+        }
+
+        // Contact modal
+        function showContact() {
+            const message = `📫 Let's Connect!\n\n📱 Phone: 0792743880\n📧 Email: bertinabijuru@gmail.com\n📍 Location: Nyanza, Ntyazo\n\nReady to discuss education, technology, and innovation!`;
+            alert(message);
+        }
+
+        // Notification system
+        function showNotification(message) {
+            const notif = document.createElement('div');
+            notif.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgba(18, 25, 40, 0.95);
+                border: 1px solid var(--primary-gold);
+                color: var(--text-primary);
+                padding: 1rem 1.5rem;
+                border-radius: 1rem;
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                font-family: 'Inter', sans-serif;
+            `;
+            notif.textContent = message;
+            document.body.appendChild(notif);
+            
+            setTimeout(() => {
+                notif.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notif.remove(), 300);
+            }, 2000);
+        }
+
+        // Add animation styles dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(400px); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(400px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        createParticles();
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.gradient-mesh');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Interactive skill nodes
+        document.querySelectorAll('.skill-node').forEach(node => {
+            node.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(2deg)';
+            });
+            node.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0)';
+            });
+        });
+    </script>
+</body>
+</html>
